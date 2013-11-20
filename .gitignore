@@ -1,0 +1,8 @@
+#ignore all documentation
+Documentation
+
+#ignore all the executables
+Bin
+
+#ignore all the recordings
+Recordings
