@@ -22,10 +22,14 @@ The body pose frames themselves are sent across TCP as
 JSON dictionaries.
 
 This is written in C++ and uses the following libraries:
+
 • OpenNI: communicates with the primesense
+
 • NiTE: extracts body pose information out of point clouds
 	gathered from primesense
+
 • ZeroMQ: interface to TCP ports
+
 • cpp_json: serializes skeleton data structures.
 
 
