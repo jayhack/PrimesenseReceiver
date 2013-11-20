@@ -1,13 +1,16 @@
 -----------------------------------------------------
+
 PrimeSenseReceiver
-------------------
+==================
 C++ utility for making body pose data from Primesense 
 available throughout your system via TCP ports
+
 by Jay Hack, Fall 2013
+
 -----------------------------------------------------
 
 1: Description
-==============
+--------------
 
 This program provides a utility for broadcasting 
 skeleton data gathered by the primesense across your
@@ -27,20 +30,24 @@ This is written in C++ and uses the following libraries:
 
 
 2: Setup/Installation
-=====================
+---------------------
 
 Set up development environment:
-~$: source SetupDevEnvironment.sh
+
+	~$: source SetupDevEnvironment.sh
 
 Compile:
-~$: make
+
+	~$: make
 
 Make sure you can run it:
-~$: chmod +x run.sh
+	
+	~$: chmod +x run.sh
 
 
 3: Usage
-========
+--------
 
 Run the program:
-~$: ./run.sh
+
+	~$: ./run.sh
