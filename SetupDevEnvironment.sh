@@ -106,6 +106,7 @@ export NITE2_INCLUDE=`pwd`/Include
 export NITE2_REDIST=`pwd`/Redist
 cd ..
 
+### Step 3: return to original directory ###
 cd $ORIGINAL_DIR
 
 
