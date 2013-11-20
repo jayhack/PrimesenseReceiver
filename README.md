@@ -1,10 +1,10 @@
---------------------------------------------
+-----------------------------------------------------
 PrimeSenseReceiver
 ------------------
-Making skeleton data from primesense available
-throughout your system via TCP ports
+C++ utility for making body pose data from Primesense 
+available throughout your system via TCP ports
 by Jay Hack, Fall 2013
---------------------------------------------
+-----------------------------------------------------
 
 1: Description
 ==============
