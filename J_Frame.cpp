@@ -51,7 +51,7 @@ J_Frame::J_Frame () {
  * given a pointer to a filled-out skeleton and a filled-out frame_ref,
  * this function will make a new J_Frame from it.
  */
-J_Frame::J_Frame 	(J_Skeleton *new_skeleton, J_VideoFrameRef *new_depth_frame, J_VideoFrameRef *new_color_frame) {
+J_Frame::J_Frame (J_Skeleton *new_skeleton, J_VideoFrameRef *new_depth_frame, J_VideoFrameRef *new_color_frame) {
 	skeleton = new_skeleton;
 	depth_frame = new_depth_frame;
 	color_frame = new_color_frame;
@@ -70,43 +70,37 @@ bool J_Frame::isValid () {
 /*########################################################################################################################*/
 /*###############################[--- Getters ---] #######################################################################*/
 /*########################################################################################################################*/
-J_Skeleton  *		J_Frame::get_skeleton 	() {
+J_Skeleton * J_Frame::get_skeleton 	() {
 	return skeleton;
 }
 
-J_VideoFrameRef * 	J_Frame::get_depth_frame 	() {
+J_VideoFrameRef * J_Frame::get_depth_frame 	() {
 	return depth_frame;
 }
 
-J_VideoFrameRef * 	J_Frame::get_color_frame	() {
+J_VideoFrameRef * J_Frame::get_color_frame	() {
 	return color_frame;
 }
 
 
 
 /*########################################################################################################################*/
-/*###############################[--- Debugging ---] #######################################################################*/
+/*###############################[--- INTERFACE ---] #####################################################################*/
 /*########################################################################################################################*/
+
 /* Function: print_data
  * --------------------
- * prints out data on the currently observed skeletons
+ * prints out data on the frame
  */
 void J_Frame::print_data () {
 
-	cout << "#####[ --- FRAME: --- ]#####" << endl;
-
-	/*### Step 1: loop through all the joints and print out their locations ###*/
+	cout << "=====[ FRAME: " << " ]=====" << endl;
 	if (!skeleton->isValid ()) {
-		cout << ">> NO USERS DETECTED <<" << endl;
+		cout << "	NO USERS DETECTED" << endl;
 	}
 	else {
-		for (int i=0;i<JSKEL_NUM_OF_JOINTS;i++) {
-
-			nite::Point3f position = skeleton->getJoint((nite::JointType) i)->getPosition();
-			cout << i << ": " << position.x << ", " << position.y << ", " << position.z << endl;
-		}
+		cout << "	USER DETECTED " << endl;
 	}
-
 }
 
 

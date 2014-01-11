@@ -128,27 +128,9 @@ void NI_App::main_loop () {
     
     while (true) {
         
-        /*### Step 1: get the next J_Frame ###*/
-        print_status ("Main", "Getting frame");
         J_Frame *frame = device_delegate->readFrame ();
-        print_status ("Main", "Extracting Skeleton");
-        J_Skeleton *skeleton = frame->get_skeleton ();
-
-        /*### Step 2: send the extracted skeleton as a message ###*/
-        if (skeleton != NULL) {
-            print_status ("Main", "Sending skeleton");
-            port_interface->send_skeleton (skeleton);
-        }
-        else {
-            skeleton = new J_Skeleton ();
-            print_status ("Main", "Sending *EMPTY* skeleton");            
-            port_interface->send_skeleton (skeleton);
-        }
-
-    
-        /*### Step 3: free all memory dedicated to the frame, increment frame number ###*/
+        port_interface->send_frame (frame);
         delete frame;
-        delete skeleton;
     }
 }
 

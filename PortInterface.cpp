@@ -16,8 +16,10 @@
 #include "cpp_json/json.h"
 
 /*--- My Files ---*/
+#include "parameters.h"
 #include "PortInterface.h"
 #include "J_Skeleton.h"
+#include "J_Frame.h"
 
 /*--- Namespaces ---*/
 using namespace std;
@@ -35,33 +37,37 @@ PortInterface::PortInterface () {
 }
 
 
-/* Function: skeleton_to_message_string
- * ------------------------------------
- * given a skeleton, returns a serialized version of it
- * via json.
+/* Function: frame_to_string
+ * -------------------------
+ * given a frame, returns a json string representation of it
  */
-string skeleton_to_string (J_Skeleton * skeleton) {
+string frame_to_string (J_Frame * frame) {
+
+    /*### Step 1: extract skeleton (fill with empty skeleton if none present) ###*/
+    J_Skeleton *skeleton = frame->get_skeleton ();
+    if (skeleton == NULL) { skeleton = new J_Skeleton ();}
 
     json::object json_skeleton = skeleton->get_json_representation ();
+    cout << json::pretty_print (json_skeleton) << "\n\n";
     string message_string = string (SUBSCRIBE_MESSAGE) + string (" ") + json::serialize(json_skeleton);
     return message_string;
 }
 
 
-
-/* Function: send_skeleton
- * -----------------------
- * given a J_Skeleton, sends it out as a message
+/* Function: send_frame
+ * --------------------
+ * given a frame, sends it out as a message
  */
-void PortInterface::send_skeleton (J_Skeleton * skeleton) {
+void PortInterface::send_frame (J_Frame * frame) {
 
-    /*### Step 1: get a string representation of the skeleton ###*/
-    string message_string = skeleton_to_string (skeleton);
+    /*=====[ Get string representation (print it) ]=====*/
+    string message_string = frame_to_string (frame);
 
-    /*### Step 2: get a zmq message out of it ###*/
+    /*=====[ Convert to zmq message ]=====*/
     zmq::message_t message (message_string.size());
     sprintf((char *) message.data(), "%s", message_string.c_str());
 
-    /*### Step 3: send the actual message ###*/
+
+    /*=====[ Send zqm message ]=====*/
     publisher->send(message);
 }

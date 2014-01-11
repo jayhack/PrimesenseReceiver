@@ -16,15 +16,12 @@
 #include <zmq.hpp>
 
 /*--- My Files ---*/
-#include "J_Skeleton.h"
+#include "parameters.h"
+#include "J_Frame.h"
 
 /*--- Namespaces ---*/
 using namespace std;
 
-/*--- Constants ---*/
-#define BIND_PORT "tcp://*:5555"
-#define SUBSCRIBE_MESSAGE "__primesense__"
-#define SUBSCRIBE_MESSAGE_LENGTH 14
 
 class PortInterface {
 
@@ -38,5 +35,5 @@ private:
 public:
 
     PortInterface ();
-   	void send_skeleton (J_Skeleton *skeleton);
+   	void send_frame (J_Frame * frame);
 };

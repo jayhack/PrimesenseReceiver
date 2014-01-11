@@ -24,11 +24,8 @@
 #include "cpp_json/json.h"
 
 /*--- My Files ---*/
+#include "parameters.h"
 #include "J_Joint.h"
-
-
-/*--- Constants ---*/
-#define JSKEL_NUM_OF_JOINTS 15
 
 /*--- Namespaces ---*/
 using namespace std;
@@ -40,25 +37,18 @@ using namespace std;
  * my personal implementation of nite::Skeleton
  */
 class J_Skeleton {
+
 private:
 
-	/*--- timestamp/name/validity ---*/
+	/*--- Timestamp/Name/Validity ---*/
 	int 			timestamp; 	//the time at which this skeleton occurred, also
 	string 			name;		//string representation of id, for writing/reading
 	bool 			is_valid;
 
-	/*--- joints ---*/
+	/*--- Joints ---*/
 	J_Joint *joints [15];
 
-	/*--- higher-level properties ---*/
-	nite::BoundingBox 	bounding_box;
-	nite::Point3f 		center_of_mass;
-
-	/*--- beat/pop ---*/
-	bool beat;
-	bool pop;
-
-	/*--- initialization ---*/
+	/*--- Initialization ---*/
 	void initialize ();
 
 
@@ -70,7 +60,6 @@ public:
 	J_Skeleton (std::map<nite::JointType, J_Joint> new_joints, int new_timestamp);
 	J_Skeleton (nite::Skeleton *skeleton, nite::UserTracker *user_tracker);
 	J_Skeleton (J_Skeleton *skeleton);
-	J_Skeleton (json::value json_representation);
 	~J_Skeleton ();
 
 	/*--- Computing Properties ---*/
@@ -86,17 +75,10 @@ public:
 	void 		setValid 			(bool value);
 	int 		getTimestamp		();
 	void 		setTimestamp 		(int new_timestamp); 
-	bool		getBeat 			();
-	void 		setBeat 			(bool beat_value);
-	bool		getPop				();
-	void 		setPop				(bool pop_value);
-	J_Joint 	*getJoint 			(nite::JointType joint_type);
+	J_Joint *	getJoint 			(nite::JointType joint_type);
 	void 		setJoint 			(nite::JointType joint_type, nite::Point3f new_position, nite::Point3f new_position_absolute, nite::Quaternion new_orientation);
 	void 		setJointPosition	(nite::JointType joint_type, nite::Point3f new_position);
 	void 		setJointOrientation	(nite::JointType joint_type, nite::Quaternion new_orientation);
 
-
 };
-
-
 #endif	//_J_SKELETON_H

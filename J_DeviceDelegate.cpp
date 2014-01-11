@@ -99,18 +99,15 @@ J_Frame * J_DeviceDelegate::readFrame () {
 
 
 	/*### Step 1: get the color frame ###*/
-	// cout << "	- checking the validity of the color stream" << endl;
 	if (!color_stream.isValid()) {
 		print_error ("J_DeviceDelegate", "the color stream is invalid. shutting down");
 		openni::OpenNI::shutdown();
 	}
-	// cout << "	- about to read the actual frame" << endl;
 	color_stream.readFrame (&ni_colorFrame);
-	// cout << "	- read the actual frame" << endl;
 	if (!ni_colorFrame.isValid ()) {
 		print_error ("could not get the color frame", "do something about it");
 	}
-	// cout << "	- about to read depth frame" << endl;
+
 	/*### Step 1: get a userTrackerFrame from user_tracker, depth frame ###*/
 	nite::Status rc = user_tracker->readFrame(&userTrackerFrame);
 	if (rc != nite::STATUS_OK) {
@@ -122,6 +119,7 @@ J_Frame * J_DeviceDelegate::readFrame () {
 	/*### Step 2: get a J_Skeleton out of it ###*/
 	const nite::Array<nite::UserData>& users = userTrackerFrame.getUsers();
 	J_Skeleton *skeleton = NULL;
+
 	/*### --- Note: For now, only deal with a single skeleton ---###*/
 	if (users.getSize() > 0) {
 
