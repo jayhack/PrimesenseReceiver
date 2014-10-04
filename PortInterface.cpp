@@ -43,19 +43,17 @@ PortInterface::PortInterface () {
  */
 string frame_to_string (J_Frame * frame) {
 
-    cout << "---frame to string ---" << endl;
-    /*### Step 1: extract skeleton (fill with empty skeleton if none present) ###*/
     std::vector<J_Skeleton *> skeletons = frame->get_skeletons ();
-    cout << "skeletons.size(): " << skeletons.size() << endl;
-    if (skeletons.size() > 0) {
-        cout << "HERE" << endl;        
-        for (int i=0;i<skeletons.size();i++) {
-            
-            J_Skeleton* skeleton = skeletons.at(i);
-            json::object json_skeleton = skeleton->get_json_representation ();
-            cout << json::pretty_print (json_skeleton) << "\n\n";
-            
-        }
+
+    cout << "#####################################################" << endl;
+    cout << "#############[ FRAME ]###############################" << endl;
+    cout << "#####################################################" << endl;
+    cout << "#  " << skeletons.size() << endl;
+    /*### Step 1: extract skeleton (fill with empty skeleton if none present) ###*/
+    for (int i=0;i<skeletons.size();i++) {      
+        J_Skeleton* skeleton = skeletons.at(i);
+        json::object json_skeleton = skeleton->get_json_representation ();
+        cout << json::pretty_print (json_skeleton) << "\n\n";
     }
     // json::object json_skeleton = skeleton->get_json_representation ();
     // cout << json::pretty_print (json_skeleton) << "\n\n";
