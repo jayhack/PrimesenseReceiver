@@ -150,15 +150,35 @@ J_Skeleton::~J_Skeleton () {
 /*###############################[--- JSON Representation ---]############################################################*/
 /*########################################################################################################################*/
 
+/* PARAMETERS: joint_labels
+ * ------------------------
+ * joint_labels[i] is the index of the ith joint
+ */
+string joint_labels[15] = {
+							"JOINT_HEAD",
+							"JOINT_NECK",
+							"JOINT_LEFT_SHOULDER",
+							"JOINT_RIGHT_SHOULDER",
+							"JOINT_LEFT_ELBOW",
+							"JOINT_RIGHT_ELBOW",
+							"JOINT_LEFT_HAND",
+							"JOINT_RIGHT_HAND",
+							"JOINT_TORSO",
+							"JOINT_LEFT_HIP",
+							"JOINT_RIGHT_HIP",
+							"JOINT_LEFT_KNEE",
+							"JOINT_RIGHT_KNEE",
+							"JOINT_LEFT_FOOT",
+							"JOINT_RIGHT_FOOT"
+						};
+
 /* Function: get_joint_label
  * -------------------------
  * given an index, this returns a c string that can serve
  * as a label for it
  */
 const char * get_joint_label (int joint_index) {
-	stringstream joint_label;
-	joint_label << JOINT_KEY_BASE << joint_index;
-	return joint_label.str().c_str ();
+	return joint_labels [joint_index].c_str ();
 }
 
 
