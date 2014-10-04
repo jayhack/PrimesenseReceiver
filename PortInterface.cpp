@@ -43,9 +43,11 @@ PortInterface::PortInterface () {
  */
 string frame_to_string (J_Frame * frame) {
 
+    cout << "---frame to string ---" << endl;
     /*### Step 1: extract skeleton (fill with empty skeleton if none present) ###*/
     std::vector<J_Skeleton *> *skeletons = frame->get_skeletons ();
     if (skeletons != NULL) {
+        cout << "HERE" << endl;        
         for (int i=0;i<skeletons->size();i++) {
             
             J_Skeleton* skeleton = skeletons->at(i);
