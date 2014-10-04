@@ -132,9 +132,9 @@ J_Frame * J_DeviceDelegate::readFrame () {
 			if (users[0].getSkeleton().getState() == nite::SKELETON_TRACKED) {
 
 					nite::Skeleton nite_skeleton = users[0].getSkeleton ();
-					skeleton = new J_Skeleton (&nite_skeleton, user_tracker);
+					J_Skeleton *skeleton = new J_Skeleton (&nite_skeleton, user_tracker);
 					J_Joint *current_joint = skeleton->getJoint ((nite::JointType) 0);
-					skeletons.push_back(skeleton)
+					skeletons.push_back(skeleton);
 			}
 		}
 	}

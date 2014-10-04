@@ -48,14 +48,14 @@ string frame_to_string (J_Frame * frame) {
     if (skeletons != NULL) {
         for (int i=0;i<skeletons->size();i++) {
             
-            J_Skeleton* skeleton = skeletons.at(i);
+            J_Skeleton* skeleton = skeletons->at(i);
             json::object json_skeleton = skeleton->get_json_representation ();
             cout << json::pretty_print (json_skeleton) << "\n\n";
             
         }
     }
-    json::object json_skeleton = skeleton->get_json_representation ();
-    cout << json::pretty_print (json_skeleton) << "\n\n";
+    // json::object json_skeleton = skeleton->get_json_representation ();
+    // cout << json::pretty_print (json_skeleton) << "\n\n";
     // string message_string = string (SUBSCRIBE_MESSAGE) + string (" ") + json::serialize(json_skeleton);
     string a;
     return a;

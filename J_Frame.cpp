@@ -52,7 +52,7 @@ J_Frame::J_Frame () {
  * this function will make a new J_Frame from it.
  */
 J_Frame::J_Frame (std::vector<J_Skeleton *> *new_skeletons, J_VideoFrameRef *new_depth_frame, J_VideoFrameRef *new_color_frame) {
-	skeletons = new_skeleton;
+	skeletons = new_skeletons;
 	depth_frame = new_depth_frame;
 	color_frame = new_color_frame;
 	is_valid = true;
