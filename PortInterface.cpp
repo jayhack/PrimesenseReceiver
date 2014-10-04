@@ -53,7 +53,7 @@ string frame_to_string (J_Frame * frame) {
     json::object json_skeletons;
     for (int i=0;i<skeletons.size();i++) {      
         J_Skeleton* skeleton = skeletons.at(i);
-        json::object json_skeleton = skeleton->get_json_representation ();
+        json::object json_skeleton = skeleton->get_json_representation();
         json_skeletons.insert(string("skeleton_") + to_string(i), json_skeleton);
     }
     cout << json::pretty_print (json_skeletons) << "\n\n";

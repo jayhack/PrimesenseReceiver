@@ -129,9 +129,9 @@ J_Frame * J_DeviceDelegate::readFrame () {
 			user_tracker->startPoseDetection(user.getId(), nite::POSE_CROSSED_HANDS);
 		}
 		else if (!user.isLost()) {
-			if (users[0].getSkeleton().getState() == nite::SKELETON_TRACKED) {
+			if (users[i].getSkeleton().getState() == nite::SKELETON_TRACKED) {
 
-					nite::Skeleton nite_skeleton = users[0].getSkeleton ();
+					nite::Skeleton nite_skeleton = users[i].getSkeleton ();
 					J_Skeleton *skeleton = new J_Skeleton (&nite_skeleton, user_tracker);
 					J_Joint *current_joint = skeleton->getJoint ((nite::JointType) 0);
 					skeletons.push_back(skeleton);
