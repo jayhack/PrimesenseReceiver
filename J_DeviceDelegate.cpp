@@ -85,7 +85,7 @@ J_DeviceDelegate::~J_DeviceDelegate () {
 /*########################################################################################################################*/
 /* Function: readFrame
  * -------------------
- * this functino will return a pointer to the next J_Frame;
+ * this function will return a pointer to the next J_Frame;
  * note that it will allocate the memory for it, so it is up to the user
  * to free the memory allocated for the received J_Frame somewhere down the line.
  * NOTE: this will also store the *absolute* coordinates of the skeleton in it. 
@@ -118,12 +118,12 @@ J_Frame * J_DeviceDelegate::readFrame () {
 
 	/*### Step 2: get a J_Skeleton out of it ###*/
 	const nite::Array<nite::UserData>& users = userTrackerFrame.getUsers();
-	J_Skeleton *skeleton = NULL;
+	std::vector<J_Skeleton*> skeletons;
 
 	/*### --- Note: For now, only deal with a single skeleton ---###*/
-	if (users.getSize() > 0) {
+	for (int i=0;i<users.getSize();i++){
 
-		const nite::UserData & user = users[0];
+		const nite::UserData & user = users[i];
 		if (user.isNew ()) {
 			user_tracker->startSkeletonTracking(user.getId());
 			user_tracker->startPoseDetection(user.getId(), nite::POSE_CROSSED_HANDS);
@@ -134,18 +134,16 @@ J_Frame * J_DeviceDelegate::readFrame () {
 					nite::Skeleton nite_skeleton = users[0].getSkeleton ();
 					skeleton = new J_Skeleton (&nite_skeleton, user_tracker);
 					J_Joint *current_joint = skeleton->getJoint ((nite::JointType) 0);
+					skeletons.push_back(skeleton)
 			}
 		}
-	}
-	else {
-		skeleton = NULL;
 	}
 
 
 	/*### Step 4: create the actual frame ###*/
 	J_VideoFrameRef *j_depth_frame = new J_VideoFrameRef (&ni_depthFrame);
 	J_VideoFrameRef *j_color_frame = new J_VideoFrameRef (&ni_colorFrame);
-	J_Frame * new_frame = new J_Frame (skeleton, j_depth_frame, j_color_frame);
+	J_Frame * new_frame = new J_Frame (&skeletons, j_depth_frame, j_color_frame);
 	return new_frame;
 
 }

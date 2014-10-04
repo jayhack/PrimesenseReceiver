@@ -47,7 +47,7 @@ public:
 	J_Frame (J_Skeleton *new_skeleton, J_VideoFrameRef *new_depth_frame, J_VideoFrameRef *new_color_frame);
 
 	/*--- Getters ---*/
-	J_Skeleton 			*get_skeleton 		();
+	J_Skeleton 			*get_skeletons 		();
 	J_VideoFrameRef 	*get_depth_frame 	();
 	J_VideoFrameRef		*get_color_frame	();
 

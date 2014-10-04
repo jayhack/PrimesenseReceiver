@@ -41,7 +41,7 @@
  */
 J_Frame::J_Frame () { 
 	is_valid = false;
-	skeleton = NULL;
+	skeletons = NULL;  //will be a pointer to a vector
 	depth_frame = NULL;
 	color_frame = NULL;
 }
@@ -51,8 +51,8 @@ J_Frame::J_Frame () {
  * given a pointer to a filled-out skeleton and a filled-out frame_ref,
  * this function will make a new J_Frame from it.
  */
-J_Frame::J_Frame (J_Skeleton *new_skeleton, J_VideoFrameRef *new_depth_frame, J_VideoFrameRef *new_color_frame) {
-	skeleton = new_skeleton;
+J_Frame::J_Frame (std::vector<J_Skeleton *> *new_skeletons, J_VideoFrameRef *new_depth_frame, J_VideoFrameRef *new_color_frame) {
+	skeletons = new_skeleton;
 	depth_frame = new_depth_frame;
 	color_frame = new_color_frame;
 	is_valid = true;
@@ -70,8 +70,8 @@ bool J_Frame::isValid () {
 /*########################################################################################################################*/
 /*###############################[--- Getters ---] #######################################################################*/
 /*########################################################################################################################*/
-J_Skeleton * J_Frame::get_skeleton 	() {
-	return skeleton;
+std::vector<J_Skeleton *> * J_Frame::get_skeletons 	() {
+	return skeletons;
 }
 
 J_VideoFrameRef * J_Frame::get_depth_frame 	() {
@@ -95,7 +95,7 @@ J_VideoFrameRef * J_Frame::get_color_frame	() {
 void J_Frame::print_data () {
 
 	cout << "=====[ FRAME: " << " ]=====" << endl;
-	if (!skeleton->isValid ()) {
+	if (skeletons->size() > 0) {
 		cout << "	NO USERS DETECTED" << endl;
 	}
 	else {
