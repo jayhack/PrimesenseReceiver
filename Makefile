@@ -25,7 +25,7 @@ SRC_FILES += 	cpp_json/*.cpp
 # ---------
 # List of additional library directories
 LIB_DIRS += $(OPENNI2_REDIST)
-LIB_DIRS += $(NITE2_REDIST)
+LIB_DIRS += $(NITE2_REDIST64)
 LIB_DIRS += /opt/local/lib 	# Boost
 LIB_DIRS += /usr/local/lib 	# ZeroMQ
 
