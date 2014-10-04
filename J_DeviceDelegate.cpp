@@ -143,7 +143,7 @@ J_Frame * J_DeviceDelegate::readFrame () {
 	/*### Step 4: create the actual frame ###*/
 	J_VideoFrameRef *j_depth_frame = new J_VideoFrameRef (&ni_depthFrame);
 	J_VideoFrameRef *j_color_frame = new J_VideoFrameRef (&ni_colorFrame);
-	J_Frame * new_frame = new J_Frame (&skeletons, j_depth_frame, j_color_frame);
+	J_Frame * new_frame = new J_Frame (skeletons, j_depth_frame, j_color_frame);
 	return new_frame;
 
 }

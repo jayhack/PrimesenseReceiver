@@ -33,7 +33,7 @@ class J_Frame {
 private:
 
 	/*--- Data ---*/
-	std::vector<J_Skeleton*>* skeletons;
+	std::vector<J_Skeleton*> skeletons;
 	J_VideoFrameRef 	* depth_frame;
 	J_VideoFrameRef		* color_frame;
 
@@ -44,10 +44,10 @@ public:
 
 	/*--- Constructors ---*/
 	J_Frame ();
-	J_Frame (std::vector<J_Skeleton *> *new_skeletons, J_VideoFrameRef *new_depth_frame, J_VideoFrameRef *new_color_frame);
+	J_Frame (std::vector<J_Skeleton *> new_skeletons, J_VideoFrameRef *new_depth_frame, J_VideoFrameRef *new_color_frame);
 
 	/*--- Getters ---*/
-	std::vector<J_Skeleton *> *get_skeletons 	();
+	std::vector<J_Skeleton *> get_skeletons 	();
 	J_VideoFrameRef 	*get_depth_frame 		();
 	J_VideoFrameRef		*get_color_frame		();
 
